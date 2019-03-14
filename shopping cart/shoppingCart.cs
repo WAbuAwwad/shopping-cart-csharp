@@ -34,7 +34,12 @@ namespace shopping_cart
         }
         public double CalculateTaxes()
         {
-            return 0.1;
+            double taxes = 0;
+            foreach (var item in items)
+            {
+                taxes += item.Price * item.Taxe;
+            }
+            return taxes;
         }
         public double CalculateDiscount()
         {
