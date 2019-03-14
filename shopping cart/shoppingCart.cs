@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,21 @@ using System.Threading.Tasks;
 
 namespace shopping_cart
 {
-    class shoppingCart
+   public class shoppingCart
     {
         private bool isEmpty;
-        private cartItem[] items;
-
-        public void  addItem()
+        private ArrayList items;
+        public bool IsEmpty { get { return isEmpty; } }
+        public shoppingCart(int itemsMaxLimit)
         {
+            this.isEmpty = true;
+           this.items = new ArrayList();
+        }
 
+        public void  AddItem(cartItem item)
+        {
+            this.items.Add(item);
+            this.isEmpty = false;
         }
         public double calculateTotal()
         {

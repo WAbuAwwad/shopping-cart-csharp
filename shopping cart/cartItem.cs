@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace shopping_cart
 {
-    class cartItem
+   public class cartItem
     {
         private double price;
         private double taxe;
         private bool hasDiscount;
         private double discount;
 
-        cartItem(double price, double taxe , bool hasDiscount,double discount)
+     public  cartItem(double price, double taxe , bool hasDiscount,double discount)
         {
             this.price = price;
             this.taxe = taxe;
