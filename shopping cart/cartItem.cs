@@ -14,19 +14,30 @@ namespace shopping_cart
         private double taxe;
         private bool hasDiscount;
         private double discount;
+        private int quantity;
+        private int itemId;
+        private long soldTo;
+        private string color;
+        private string type;
         public double  Price { get { return price; } }
         public string Currency { get { return currency; } }
         public double Taxe { get { return taxe; } }
         public bool HasDiscount { get { return hasDiscount; } }
         public double Discount { get { return discount; } }
-
-        public  cartItem(double price,string currency, double taxe , bool hasDiscount,double discount)
+        public int Quantity { get { return quantity; } }
+        public  cartItem(int quantity,double price,string currency, 
+                          double taxe , bool hasDiscount,double discount,int id , int soldTo , string color, string type)
         {
             this.price = price;
             this.currency = currency;
             this.taxe = taxe;
             this.hasDiscount = hasDiscount;
             this.discount = discount;
+            this.quantity = quantity;
+            this.itemId = id;
+            this.soldTo = soldTo;
+            this.color = color;
+            this.type = type;
         }
     }
 }

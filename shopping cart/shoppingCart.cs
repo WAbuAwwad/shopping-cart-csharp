@@ -30,7 +30,7 @@ namespace shopping_cart
             foreach (var item in items)
             {
                  double priceInUSD = item.Price* Convert.ToDouble(GetExchangeRate("USD",item.Currency)) ;
-                 total += priceInUSD;
+                 total += priceInUSD * item.Quantity;
             }
             return total;
         }
@@ -39,7 +39,7 @@ namespace shopping_cart
             double taxes = 0;
             foreach (var item in items)
             {
-                taxes += item.Price * item.Taxe;
+                taxes += item.Price * item.Taxe * item.Quantity;
             }
             return taxes;
         }
@@ -48,7 +48,7 @@ namespace shopping_cart
             double discount = 0;
             foreach (var item in items)
             {
-                discount += item.Price * item.Discount;
+                discount += item.Price * item.Discount * item.Quantity;
             }
             return discount;
         }
