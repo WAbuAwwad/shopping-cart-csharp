@@ -19,7 +19,7 @@ namespace shopping_cart
         private long soldTo;
         private string color;
         private string type;
-        public double  Price { get { return price; } }
+        public double  Price { get { return price; }set{ price = value; } }
         public string Currency { get { return currency; } }
         public double Taxe { get { return taxe; } }
         public bool HasDiscount { get { return hasDiscount; } }

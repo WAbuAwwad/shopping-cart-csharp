@@ -20,6 +20,8 @@ namespace shopping_cart
 
         public void  AddItem(cartItem item)
         {
+            double priceInUSD = item.Price * ExchangeCurrency(item.Currency);
+            item.Price = priceInUSD;
             this.items.Add(item);
             this.isEmpty = false;
         }
@@ -29,8 +31,8 @@ namespace shopping_cart
             double total = 0;
             foreach (var item in items)
             {
-                 double priceInUSD = item.Price* Convert.ToDouble(GetExchangeRate("USD",item.Currency)) ;
-                 total += priceInUSD * item.Quantity;
+               
+                 total += item.Price * item.Quantity;
             }
             return total;
         }
@@ -53,31 +55,14 @@ namespace shopping_cart
             return discount;
         }
 
-       
-        public string  GetExchangeRate(string from, string to)
+        public double  ExchangeCurrency(string currency)
         {
-            using (var client = new HttpClient())
-            {
-                try
-                {
-                    var response = client.GetStringAsync(new Uri("http://apilayer.net/api/live?access_key=e7cbfc3e92bb561815abe7e82ce9069e&currencies=USD,AUD,CAD,PLN,MXN&format=1")).Result;
-                    dynamic result = JValue.Parse(response);
-                    if (result.success == "True")
-                    {
-                        string temp = from.ToUpper() + to.ToUpper();
-                        return result.quotes[temp];
-                    }
-                    else
-                    {
-                     return "error in fetching data";
-                    }
-                }
-                catch (HttpRequestException httpRequestException)
-                {
-                    return "error "+ httpRequestException;
-                }
-            }
 
+            if (currency.ToUpper() == "EUR") return 1.5;
+            else if (currency.ToUpper() == "NIS") return 3.5;
+            else if (currency.ToUpper() == "AED") return 5.8;
+            else if (currency.ToUpper() == "SAR") return 2.7;
+            else return 1;
         }
     }
 }
