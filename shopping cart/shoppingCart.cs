@@ -43,7 +43,12 @@ namespace shopping_cart
         }
         public double CalculateDiscount()
         {
-            return 0.1;
+            double discount = 0;
+            foreach (var item in items)
+            {
+                discount += item.Price * item.Discount;
+            }
+            return discount;
         }
     }
 }

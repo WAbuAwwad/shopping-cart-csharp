@@ -46,5 +46,17 @@ namespace shopping_cart_test
             myShoppingCart.AddItem(myItem1);
             Assert.AreEqual(myShoppingCart.CalculateTaxes(), 21.87);
         }
+        [TestMethod]
+        public void Calculate_discount()
+        {
+            shoppingCart myShoppingCart = new shoppingCart();
+            Assert.AreEqual(myShoppingCart.IsEmpty, true);
+            cartItem myItem = new cartItem(30, 0.65, true, 0.05);
+            myShoppingCart.AddItem(myItem);
+            Assert.AreEqual(myShoppingCart.CalculateDiscount(),1.5);
+            cartItem myItem1 = new cartItem(15.8, 0.15, true, 0.25);
+            myShoppingCart.AddItem(myItem1);
+            Assert.AreEqual(myShoppingCart.CalculateDiscount(),5.45);
+        }
     }
 }
