@@ -12,8 +12,11 @@ namespace shopping_cart
         private double taxe;
         private bool hasDiscount;
         private double discount;
-
-     public  cartItem(double price, double taxe , bool hasDiscount,double discount)
+        public double  Price { get { return price; } }
+        public double Taxe { get { return taxe; } }
+        public bool HasDiscount { get { return hasDiscount; } }
+        public double Discount { get { return discount; } }
+        public  cartItem(double price, double taxe , bool hasDiscount,double discount)
         {
             this.price = price;
             this.taxe = taxe;

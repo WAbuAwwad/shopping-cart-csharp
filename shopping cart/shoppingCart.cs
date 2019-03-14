@@ -10,12 +10,12 @@ namespace shopping_cart
    public class shoppingCart
     {
         private bool isEmpty;
-        private ArrayList items;
+        private List<cartItem> items ;
         public bool IsEmpty { get { return isEmpty; } }
-        public shoppingCart(int itemsMaxLimit)
+        public shoppingCart()
         {
             this.isEmpty = true;
-           this.items = new ArrayList();
+            this.items = new List<cartItem>();
         }
 
         public void  AddItem(cartItem item)
@@ -23,15 +23,20 @@ namespace shopping_cart
             this.items.Add(item);
             this.isEmpty = false;
         }
-        public double calculateTotal()
+        public double CalculateTotal()
+        {
+            double total = 0;
+            foreach (var item in items)
+            {
+                total += item.Price;
+            }
+            return total;
+        }
+        public double CalculateTaxes()
         {
             return 0.1;
         }
-        public double calculateTaxes()
-        {
-            return 0.1;
-        }
-        public double calculateDiscount()
+        public double CalculateDiscount()
         {
             return 0.1;
         }
