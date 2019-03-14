@@ -16,7 +16,7 @@ namespace shopping_cart_test
         public void Add_Item()
         {
             shoppingCart myShoppingCart = new shoppingCart();
-            cartItem myItem = new cartItem(30, 0.65, true, 0.05);
+            cartItem myItem = new cartItem(30,"$", 0.65, true, 0.05);
             Assert.AreEqual(myShoppingCart.IsEmpty, true);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.IsEmpty, false);
@@ -27,10 +27,10 @@ namespace shopping_cart_test
         {
             shoppingCart myShoppingCart = new shoppingCart();
             Assert.AreEqual(myShoppingCart.IsEmpty, true);
-            cartItem myItem = new cartItem(30, 0.65, true, 0.05);
+            cartItem myItem = new cartItem(30, "USD", 0.65, true, 0.05);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.CalculateTotal(),30);
-            cartItem myItem1 = new cartItem(15.8, 0.65, true, 0.05);
+            cartItem myItem1 = new cartItem(15.8, "USD", 0.65, true, 0.05);
             myShoppingCart.AddItem(myItem1);
             Assert.AreEqual(myShoppingCart.CalculateTotal(), 45.8);
         }
@@ -39,10 +39,10 @@ namespace shopping_cart_test
         {
             shoppingCart myShoppingCart = new shoppingCart();
             Assert.AreEqual(myShoppingCart.IsEmpty, true);
-            cartItem myItem = new cartItem(30, 0.65, true, 0.05);
+            cartItem myItem = new cartItem(30, "$", 0.65, true, 0.05);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.CalculateTaxes(), 19.5);
-            cartItem myItem1 = new cartItem(15.8, 0.15, true, 0.05);
+            cartItem myItem1 = new cartItem(15.8, "$", 0.15, true, 0.05);
             myShoppingCart.AddItem(myItem1);
             Assert.AreEqual(myShoppingCart.CalculateTaxes(), 21.87);
         }
@@ -51,12 +51,24 @@ namespace shopping_cart_test
         {
             shoppingCart myShoppingCart = new shoppingCart();
             Assert.AreEqual(myShoppingCart.IsEmpty, true);
-            cartItem myItem = new cartItem(30, 0.65, true, 0.05);
+            cartItem myItem = new cartItem(30, "$", 0.65, true, 0.05);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.CalculateDiscount(),1.5);
-            cartItem myItem1 = new cartItem(15.8, 0.15, true, 0.25);
+            cartItem myItem1 = new cartItem(15.8, "$", 0.15, true, 0.25);
             myShoppingCart.AddItem(myItem1);
             Assert.AreEqual(myShoppingCart.CalculateDiscount(),5.45);
+        }
+        [TestMethod]
+        public void Dealing_with_currency()
+        {
+            shoppingCart myShoppingCart = new shoppingCart();
+            Assert.AreEqual(myShoppingCart.IsEmpty, true);
+            cartItem myItem = new cartItem(30, "USD", 0.65, true, 0.05);
+            myShoppingCart.AddItem(myItem);
+            Assert.AreEqual(myShoppingCart.CalculateTotal(), 30);
+            cartItem myItem1 = new cartItem(15.8, "AUD", 0.15, true, 0.25);
+            myShoppingCart.AddItem(myItem1);
+            Assert.AreEqual(myShoppingCart.CalculateTotal(),52.3633358);
         }
     }
 }

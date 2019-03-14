@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net.Http;
+
 
 namespace shopping_cart
 {
@@ -23,12 +23,14 @@ namespace shopping_cart
             this.items.Add(item);
             this.isEmpty = false;
         }
+
         public double CalculateTotal()
         {
             double total = 0;
             foreach (var item in items)
             {
-                total += item.Price;
+                 double priceInUSD = item.Price* Convert.ToDouble(GetExchangeRate("USD",item.Currency)) ;
+                 total += priceInUSD;
             }
             return total;
         }
@@ -49,6 +51,33 @@ namespace shopping_cart
                 discount += item.Price * item.Discount;
             }
             return discount;
+        }
+
+       
+        public string  GetExchangeRate(string from, string to)
+        {
+            using (var client = new HttpClient())
+            {
+                try
+                {
+                    var response = client.GetStringAsync(new Uri("http://apilayer.net/api/live?access_key=e7cbfc3e92bb561815abe7e82ce9069e&currencies=USD,AUD,CAD,PLN,MXN&format=1")).Result;
+                    dynamic result = JValue.Parse(response);
+                    if (result.success == "True")
+                    {
+                        string temp = from.ToUpper() + to.ToUpper();
+                        return result.quotes[temp];
+                    }
+                    else
+                    {
+                     return "error in fetching data";
+                    }
+                }
+                catch (HttpRequestException httpRequestException)
+                {
+                    return "error "+ httpRequestException;
+                }
+            }
+
         }
     }
 }

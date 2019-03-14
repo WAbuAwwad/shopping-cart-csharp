@@ -10,6 +10,11 @@ namespace shopping_cart
     {
         static void Main(string[] args)
         {
+            shoppingCart myShoppingCart = new shoppingCart();
+            Console.WriteLine(myShoppingCart.GetExchangeRate("USD", "USD"));
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
+
         }
     }
 }
