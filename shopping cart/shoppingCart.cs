@@ -44,7 +44,7 @@ namespace shopping_cart
             foreach (var item in items)
             {
                
-                 total += item.Price * item.Quantity;
+                 total += item.Item.Price * item.Quantity;
             }
             return total;
         }
@@ -53,7 +53,7 @@ namespace shopping_cart
             double taxes = 0;
             foreach (var item in items)
             {
-                taxes += item.Price * item.Taxe * item.Quantity;
+                taxes += item.Item.Price * item.Item.Taxe * item.Quantity;
             }
             return taxes;
         }
@@ -67,9 +67,9 @@ namespace shopping_cart
             foreach (var item in items)
                 {
                     if (this.discountType == "perItem" && item.HasDiscount)
-                        discount += item.Price * item.Discount * item.Quantity;
+                        discount += item.Item.Price * item.Discount * item.Quantity;
                     else if (this.discountType == "perType" && item.HasDiscount)
-                        discount += item.Price * item.Discount;
+                        discount += item.Item.Price * item.Discount;
                 }
             return discount;
         }

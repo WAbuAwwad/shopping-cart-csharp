@@ -16,7 +16,8 @@ namespace shopping_cart_test
         public void Add_Item()
         {
             shoppingCart myShoppingCart = new shoppingCart("USD", "no discount");
-            cartItem myItem = new cartItem(1,30, 0.65, true, 0.05,5,888,"red","food");
+            item item = new item(40, .13, shopping_cart.Type.Fruit_and_vegetables);
+            cartItem myItem = new cartItem(item,1,true, 0.05,1,9999);
             Assert.AreEqual(myShoppingCart.IsEmpty, true);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.IsEmpty, false);
@@ -27,11 +28,13 @@ namespace shopping_cart_test
         {
             shoppingCart myShoppingCart = new shoppingCart("USD", "no discount");
             Assert.AreEqual(myShoppingCart.IsEmpty, true);
-            cartItem myItem = new cartItem(2,30, 0.65, true, 0.05, 5, 888, "red", "food");
+            item item = new item(30, .65, shopping_cart.Type.Fruit_and_vegetables);
+            cartItem myItem = new cartItem(item, 2, true, 0.05, 1, 9999);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.CalculateTotal(),60);
-            cartItem myItem1 = new cartItem(1,15.8, 0.65, true, 0.05, 5, 888, "red", "food");
-            myShoppingCart.AddItem(myItem1);
+            item = new item(15.8, .13, shopping_cart.Type.Fruit_and_vegetables);
+            myItem = new cartItem(item, 1, true, 0.05, 1, 9999);
+            myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.CalculateTotal(), 75.8);
         }
         [TestMethod]
@@ -39,11 +42,13 @@ namespace shopping_cart_test
         {
             shoppingCart myShoppingCart = new shoppingCart("USD", "no discount");
             Assert.AreEqual(myShoppingCart.IsEmpty, true);
-            cartItem myItem = new cartItem(1,30, 0.65, true, 0.05, 5, 888, "red", "food");
+            item item = new item(30, .65, shopping_cart.Type.Fruit_and_vegetables);
+            cartItem myItem = new cartItem(item, 1, true, 0.05, 1, 9999);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.CalculateTaxes(), 19.5);
-            cartItem myItem1 = new cartItem(1,15.8, 0.15, true, 0.05, 5, 888, "red", "food");
-            myShoppingCart.AddItem(myItem1);
+            item = new item(15.8, .15, shopping_cart.Type.Fruit_and_vegetables);
+            myItem = new cartItem(item, 1, true, 0.05, 1, 9999);
+            myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.CalculateTaxes(), 21.87);
         }
         [TestMethod]
@@ -51,25 +56,31 @@ namespace shopping_cart_test
         {
             shoppingCart myShoppingCart = new shoppingCart("USD", "no discount");
             Assert.AreEqual(myShoppingCart.IsEmpty, true);
-            cartItem myItem = new cartItem(1,30, 0.65, false, 0.0, 5, 888, "red", "food");
+            item item = new item(30, .13, shopping_cart.Type.Fruit_and_vegetables);
+            cartItem myItem = new cartItem(item, 1, true, 0.65, 1, 9999);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.CalculateDiscount(),0);
             myShoppingCart = new shoppingCart("USD", "perItem");
-            myItem = new cartItem(1, 30,0.65, false, 0.0, 5, 888, "red", "food");
+            item = new item(30, .65, shopping_cart.Type.Fruit_and_vegetables);
+            myItem = new cartItem(item, 1, false, 0.05, 1, 9999);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.CalculateDiscount(), 0);
             myShoppingCart = new shoppingCart("USD", "perItem");
-            myItem = new cartItem(2, 30, 0.65, true, 0.05, 5, 888, "red", "food");
+            item = new item(30, .65, shopping_cart.Type.Fruit_and_vegetables);
+            myItem = new cartItem(item,2, true, 0.05, 1, 9999);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.CalculateDiscount(),3);
             myShoppingCart = new shoppingCart("USD", "perType");
-            myItem = new cartItem(2, 30, 0.65, true, 0.05, 5, 888, "red", "food");
+            item = new item(30, .65, shopping_cart.Type.Fruit_and_vegetables);
+            myItem = new cartItem(item, 2, true, 0.05, 1, 9999);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.CalculateDiscount(), 1.5);
             myShoppingCart = new shoppingCart("USD", "perCart" , 0.40);
-            myItem = new cartItem(1, 40, 0.65, true, 0.05, 5, 888, "red", "food");
+            item = new item(40, .65, shopping_cart.Type.Fruit_and_vegetables);
+            myItem = new cartItem(item, 1, true, 0.05, 1, 9999);
             myShoppingCart.AddItem(myItem);
-            myItem = new cartItem(3, 20, 0.65, true, 0.05, 5, 888, "red", "food");
+            item = new item(20, .65, shopping_cart.Type.Fruit_and_vegetables);
+            myItem = new cartItem(item, 3, true, 0.05, 1, 9999);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.CalculateDiscount(), 40);
 
@@ -79,11 +90,13 @@ namespace shopping_cart_test
         {
             shoppingCart myShoppingCart = new shoppingCart("USD", "no discount");
             Assert.AreEqual(myShoppingCart.IsEmpty, true);
-            cartItem myItem = new cartItem(1,30,0.15, true, 0.05, 5, 888, "red", "food");
+            item item = new item(30, .15, shopping_cart.Type.Fruit_and_vegetables);
+            cartItem myItem = new cartItem(item, 1, true, 0.05, 1, 9999);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.payment(), 34.5);
             myShoppingCart = new shoppingCart("EUR", "no discount");
-            myItem = new cartItem(1, 30, 0.15, true, 0.05, 5, 888, "red", "food");
+            item = new item(30, .15, shopping_cart.Type.Fruit_and_vegetables);
+            myItem = new cartItem(item, 1, true, 0.05, 1, 9999);
             myShoppingCart.AddItem(myItem);
             Assert.AreEqual(myShoppingCart.payment(), 51.75);
         }

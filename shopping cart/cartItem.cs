@@ -8,33 +8,24 @@ namespace shopping_cart
 {
    public class cartItem
     {
-
-        private double price;
-        private double taxe;
+        private item item;
         private bool hasDiscount;
         private double discount;
         private int quantity;
         private int itemId;
         private long soldTo;
-        private string color;
-        private string type;
-        public double  Price { get { return price; }}
-        public double Taxe { get { return taxe; } }
         public bool HasDiscount { get { return hasDiscount; } }
         public double Discount { get { return discount; } }
         public int Quantity { get { return quantity; } }
-        public  cartItem(int quantity,double price, 
-                          double taxe , bool hasDiscount,double discount,int id , int soldTo , string color, string type)
+        public item Item { get { return item; } }
+        public  cartItem(item item, int quantity ,bool hasDiscount,double discount,int id , int soldTo)
         {
-            this.price = price;
-            this.taxe = taxe;
+            this.item = item;
             this.hasDiscount = hasDiscount;
             this.discount = discount;
             this.quantity = quantity;
             this.itemId = id;
             this.soldTo = soldTo;
-            this.color = color;
-            this.type = type;
         }
     }
 }
