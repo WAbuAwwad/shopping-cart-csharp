@@ -52,6 +52,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddDiscountTest.cs" />
+    <Compile Include="AddItemTest.cs" />
+    <Compile Include="CalculateDiscountTest.cs" />
+    <Compile Include="CalculatePaymentTest.cs" />
+    <Compile Include="CalculateTaxesTest.cs" />
+    <Compile Include="CalculateTotalTest.cs" />
+    <Compile Include="DifferentCurrencyTest.cs" />
     <Compile Include="UnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
