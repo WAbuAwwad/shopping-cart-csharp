@@ -54,6 +54,7 @@
     <Compile Include="classes\calculateTaxes.cs" />
     <Compile Include="classes\calculateTotal.cs" />
     <Compile Include="classes\cartItem.cs" />
+    <Compile Include="classes\discount.cs" />
     <Compile Include="classes\exchangeRate.cs" />
     <Compile Include="classes\item.cs" />
     <Compile Include="Program.cs" />

@@ -11,39 +11,34 @@ namespace shopping_cart
     {
         private bool isEmpty;
         private List<cartItem> items ;
-        private string discountType;
-        private double discount;
+        private List<discount> discounts;
         private string currency;
         private bool isPaid;
         public bool IsEmpty { get { return isEmpty; } }
         public List<cartItem>Items { get{ return items; } }
-        public string DiscountType { get{ return discountType; }}
-        public double Discount { get { return discount; } }
+        public List<discount> Discounts { get{ return discounts; }}
         public string Currency { get { return currency; } }
-        public shoppingCart(string currency,string discountType)
+        public shoppingCart(string currency)
         {
             this.isEmpty = true;
             this.items = new List<cartItem>();
             this.currency = currency;
-            this.discountType = discountType;
+            this.discounts = new List<discount>();
             this.isPaid = false;
         }
-        public shoppingCart(string currency, string discountType ,double discount)
-        {
-            this.isEmpty = true;
-            this.items = new List<cartItem>();
-            this.currency = currency;
-            this.discountType = discountType;
-            this.discount = discount;
-        }
+
         public void  AddItem(cartItem item)
         {
             this.items.Add(item);
             this.isEmpty = false;
         }
 
+        public void AddDiscount(discount discount)
+        {
+            this.discounts.Add(discount);
 
-       
+        }
+
 
 
     }
