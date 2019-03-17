@@ -49,11 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="cartItem.cs" />
-    <Compile Include="item.cs" />
+    <Compile Include="classes\calculateDiscount.cs" />
+    <Compile Include="classes\calculatePayment.cs" />
+    <Compile Include="classes\calculateTaxes.cs" />
+    <Compile Include="classes\calculateTotal.cs" />
+    <Compile Include="classes\cartItem.cs" />
+    <Compile Include="classes\exchangeRate.cs" />
+    <Compile Include="classes\item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="shoppingCart.cs" />
+    <Compile Include="classes\shoppingCart.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
