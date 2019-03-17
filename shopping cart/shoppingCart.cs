@@ -50,6 +50,7 @@ namespace shopping_cart
             double discount = 0;
             foreach (var item in items)
             {
+                if(item.HasDiscount)
                 discount += item.Price * item.Discount * item.Quantity;
             }
             return discount;
@@ -60,7 +61,7 @@ namespace shopping_cart
 
             if (currency.ToUpper() == "EUR") return 1.5;
             else if (currency.ToUpper() == "NIS") return 3.5;
-            else if (currency.ToUpper() == "AED") return 5.8;
+            else if (currency.ToUpper() == "AUD") return 5.8;
             else if (currency.ToUpper() == "SAR") return 2.7;
             else return 1;
         }

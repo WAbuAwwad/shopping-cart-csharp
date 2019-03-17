@@ -68,7 +68,7 @@ namespace shopping_cart_test
             Assert.AreEqual(myShoppingCart.CalculateTotal(), 30);
             cartItem myItem1 = new cartItem(1,15.8, "AUD", 0.15, true, 0.25, 5, 888, "red", "food");
             myShoppingCart.AddItem(myItem1);
-            Assert.AreEqual(myShoppingCart.CalculateTotal(),52.3633358);
+            Assert.AreEqual(myShoppingCart.CalculateTotal(),121.64);
         }
     }
 }
