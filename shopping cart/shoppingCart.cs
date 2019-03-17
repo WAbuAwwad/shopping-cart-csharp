@@ -11,19 +11,31 @@ namespace shopping_cart
     {
         private bool isEmpty;
         private List<cartItem> items ;
+        private string discountType;
+        private double discount;
+        private string currency;
         public bool IsEmpty { get { return isEmpty; } }
-        public shoppingCart()
+
+        public shoppingCart(string currency,string discountType)
         {
             this.isEmpty = true;
             this.items = new List<cartItem>();
+            this.currency = currency;
+            this.discountType = discountType;
         }
-
+        public shoppingCart(string currency, string discountType ,double discount)
+        {
+            this.isEmpty = true;
+            this.items = new List<cartItem>();
+            this.currency = currency;
+            this.discountType = discountType;
+            this.discount = discount;
+        }
         public void  AddItem(cartItem item)
         {
-            double priceInUSD = item.Price * ExchangeCurrency(item.Currency);
-            item.Price = priceInUSD;
             this.items.Add(item);
             this.isEmpty = false;
+
         }
 
         public double CalculateTotal()
@@ -47,15 +59,27 @@ namespace shopping_cart
         }
         public double CalculateDiscount()
         {
+            if (this.discountType == "no discount") return 0.0;
             double discount = 0;
+            if (this.discountType == "perCart")
+                return discount = CalculateTotal() * this.discount;
+
             foreach (var item in items)
-            {
-                if(item.HasDiscount)
-                discount += item.Price * item.Discount * item.Quantity;
-            }
+                {
+                    if (this.discountType == "perItem" && item.HasDiscount)
+                        discount += item.Price * item.Discount * item.Quantity;
+                    else if (this.discountType == "perType" && item.HasDiscount)
+                        discount += item.Price * item.Discount;
+                }
             return discount;
         }
 
+        public double payment()
+        {
+            double bills = CalculateTotal() + CalculateTaxes() - CalculateDiscount();
+            return bills * ExchangeCurrency(this.currency);
+
+        }
         public double  ExchangeCurrency(string currency)
         {
 
