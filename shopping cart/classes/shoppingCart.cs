@@ -18,6 +18,8 @@ namespace shopping_cart
         public List<cartItem>Items { get{ return items; } }
         public List<discount> Discounts { get{ return discounts; }}
         public string Currency { get { return currency; } }
+
+
         public shoppingCart(string currency)
         {
             this.isEmpty = true;
@@ -38,6 +40,7 @@ namespace shopping_cart
             this.discounts.Add(discount);
 
         }
+
 
 
 
